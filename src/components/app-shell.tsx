@@ -12,11 +12,13 @@ export function AppShell({
   subtitle,
   actions,
   children,
+  titleActions,
 }: {
   title: string;
   subtitle?: string;
   actions?: ReactNode;
   children: ReactNode;
+  titleActions?: ReactNode;
 }) {
   return (
     <SidebarProvider>
@@ -31,10 +33,10 @@ export function AppShell({
                 Sales Intelligence
               </span>
             </div>
-            <div className="relative hidden lg:block w-72 ml-2">
+            <div className="relative hidden lg:block w-90 ml-2">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
-                placeholder="Search accounts, contacts, opportunities…"
+                placeholder="Search accounts, contacts, opportunities, etc."
                 className="pl-9 bg-secondary border-transparent focus-visible:bg-card"
               />
             </div>
@@ -49,13 +51,17 @@ export function AppShell({
             </div>
           </header>
           <main className="flex-1 p-6 md:p-8 max-w-[1500px] w-full mx-auto">
-            <div className="mb-6">
-              <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground">
-                {title}
-              </h1>
-              {subtitle && (
-                <p className="mt-1 text-sm text-muted-foreground">{subtitle}</p>
-              )}
+            <div className="mb-6 grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6">
+              <div className="flex items-start justify-between">
+                <div>
+                  <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground">
+                    {title}
+                  </h1>
+                  {subtitle && <p className="mt-1 text-sm text-muted-foreground">{subtitle}</p>}
+                </div>
+                {titleActions && <div className="mt-1">{titleActions}</div>}
+              </div>
+              <div /> {/* empty right rail column */}
             </div>
             {children}
           </main>

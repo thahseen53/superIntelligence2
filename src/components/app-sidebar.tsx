@@ -27,15 +27,14 @@ const primary = [
   { title: "Home", url: "/", icon: LayoutDashboard },
   { title: "Accounts", url: "/accounts", icon: Building2 },
   { title: "Meetings", url: "/meetings", icon: CalendarClock },
-  { title: "Documents", url: "/documents", icon: FileText },
+  // { title: "Documents", url: "/documents", icon: FileText },
   { title: "Competitive Analysis", url: "/competitive", icon: Swords },
   { title: "Ask AI", url: "/ask", icon: MessagesSquare },
 ] as const;
 
 export function AppSidebar() {
   const path = useRouterState({ select: (r) => r.location.pathname });
-  const isActive = (url: string) =>
-    url === "/" ? path === "/" : path.startsWith(url);
+  const isActive = (url: string) => (url === "/" ? path === "/" : path.startsWith(url));
 
   return (
     <Sidebar collapsible="icon">
@@ -73,7 +72,6 @@ export function AppSidebar() {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
-
       </SidebarContent>
 
       <SidebarFooter className="border-t border-sidebar-border/60">
